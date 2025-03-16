@@ -1,0 +1,36 @@
+<h1>MPG Prediction</h1>
+
+<!-- Main Input For Receiving Query to our ML -->
+<form action="{{ url_for('predict_datapoint') }}" method="post">
+    
+    <!-- Dropdown for Cylinders -->
+    <label for="cylinders">Cylinders:</label>
+    <select name="cylinders" id="cylinders" required>
+        <option value="8">8</option>
+        <option value="4">4</option>
+        <option value="6">6</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+    </select>
+    <br><br>
+
+    <input type="text" name="displacement" placeholder="Displacement" required="required" /><br>
+    <input type="text" name="horsepower" placeholder="Horsepower" required="required" /><br>
+    <input type="text" name="weight" placeholder="Weight" required="required" /><br>
+    <input type="text" name="acceleration" placeholder="Acceleration" required="required" /><br>
+    
+    <!-- Dropdown for Model Year -->
+    <label for="model_year">Model Year:</label>
+    <select name="model_year" id="model_year" required>
+        {% for year in range(70, 83) %}
+            <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+
+    <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+</form>
+
+<h2>
+    The MPG prediction is {{results}}
+</h2>
